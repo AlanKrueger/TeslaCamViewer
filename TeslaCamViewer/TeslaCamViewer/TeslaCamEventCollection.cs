@@ -36,7 +36,8 @@ namespace TeslaCamViewer
             if (files.Length < 1) { return false; }
 
             // Convert raw files to cam files
-            List<TeslaCamFile> currentTeslaCams = files.Select(file => new TeslaCamFile(file)).ToList();
+            List<TeslaCamFile> currentTeslaCams =
+                files.Where(file => TeslaCamFile.Matches(file)).Select(file => new TeslaCamFile(file)).ToList();
 
             // Now get list of only distinct events
             List<string> distinctEvents = currentTeslaCams.Select(e => e.Date.UTCDateString).Distinct().ToList();
