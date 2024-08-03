@@ -255,7 +255,7 @@ namespace TeslaCamViewer
                     this.model.LeftStatusText = "Location: " + teslaCamDir.FullName;
 
                     // Add clips to UI tree
-                    if (recentClips != null) { this.model.ListItems.Add(recentClips); }
+                    // if (recentClips != null) { this.model.ListItems.Add(recentClips); } // TODO: re-enable when working correctly
                     if (savedClips != null) { this.model.ListItems.Add(savedClips); }
                     if (sentryClips != null) { this.model.ListItems.Add(sentryClips); }
 
@@ -326,6 +326,15 @@ namespace TeslaCamViewer
 
         private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
+            IPropertySet roamingProperties = ApplicationData.Current.RoamingSettings.Values;
+            if (!roamingProperties.ContainsKey("WelcomeScreenShown"))
+            {
+                ShowWelcomeMessage();
+                roamingProperties["WelcomeScreenShown"] = bool.TrueString;
+            }
+            */
+
             if (model.EnableAutoSearch)
             {
                 await this.TeslaCamSearchAsync();
